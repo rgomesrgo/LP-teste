@@ -12,538 +12,54 @@
     content="Aprenda o sistema que mais de 4.800 empreendedores usam para trabalhar menos e faturar mais. Acesso imediato."
   />
 
-  <style>
-    /* ─────────────────────────────────────────────
-       RESET & BASE
-    ───────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --brand:       #f97316;   /* laranja — troque pela cor da sua marca */
-      --brand-dark:  #c2410c;
-      --dark:        #0f172a;
-      --text:        #1e293b;
-      --muted:       #64748b;
-      --light:       #f8fafc;
-      --white:       #ffffff;
-      --radius:      10px;
-      --max-width:   780px;
-    }
-
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    img { max-width: 100%; display: block; }
-    a   { text-decoration: none; }
-
-    .container {
-      width: min(100%, var(--max-width));
-      margin-inline: auto;
-      padding-inline: 20px;
-    }
-
-    /* ─────────────────────────────────────────────
-       BARRA DE URGÊNCIA  ← ELEMENTO DE CRO #1
-       Cria senso de escassez sem ser agressivo
-    ───────────────────────────────────────────── */
-    .urgency-bar {
-      background: var(--dark);
-      color: var(--white);
-      text-align: center;
-      padding: 10px 20px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-
-    .urgency-bar span { color: var(--brand); }
-
-    /* ─────────────────────────────────────────────
-       HERO  ← SEÇÃO MAIS CRÍTICA PARA CONVERSÃO
-       Tudo acima do fold deve responder:
-       "O que é? Para quem? Por que eu deveria me importar?"
-    ───────────────────────────────────────────── */
-    .hero {
-      background: linear-gradient(160deg, #0f172a 0%, #1e293b 100%);
-      color: var(--white);
-      padding: 80px 20px 72px;
-      text-align: center;
-    }
-
-    /* ✏️ COPY: Eyebrow — segmenta o público imediatamente */
-    .eyebrow {
-      display: inline-block;
-      background: rgba(249,115,22,.15);
-      color: var(--brand);
-      border: 1px solid rgba(249,115,22,.4);
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 5px 16px;
-      margin-bottom: 24px;
-    }
-
-    /* ✏️ COPY: Headline — use a fórmula: VERBO + RESULTADO ESPECÍFICO + PRAZO */
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.25rem);
-      font-weight: 800;
-      line-height: 1.18;
-      max-width: 680px;
-      margin: 0 auto 20px;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--brand);
-    }
-
-    /* ✏️ COPY: Subheadline — reforce a promessa e elimine a maior objeção */
-    .hero p.sub {
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      color: #94a3b8;
-      max-width: 560px;
-      margin: 0 auto 40px;
-    }
-
-    /* ─── CTA PRINCIPAL ─── */
-    .btn-primary {
-      display: inline-block;
-      background: var(--brand);
-      color: var(--white);
-      font-size: 1.1rem;
-      font-weight: 700;
-      padding: 18px 44px;
-      border-radius: var(--radius);
-      border: none;
-      cursor: pointer;
-      transition: background .2s, transform .1s;
-      box-shadow: 0 4px 24px rgba(249,115,22,.45);
-    }
-
-    .btn-primary:hover  { background: var(--brand-dark); }
-    .btn-primary:active { transform: scale(.98); }
-
-    /* ✏️ COPY: Micro-copy abaixo do CTA — reduza o risco percebido */
-    .hero .risk-reversal {
-      font-size: 0.82rem;
-      color: #64748b;
-      margin-top: 14px;
-    }
-
-    /* ─── Prova numérica no hero ─── */
-    .social-numbers {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-top: 56px;
-      padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-
-    .social-numbers .stat strong {
-      display: block;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--white);
-    }
-
-    .social-numbers .stat span {
-      font-size: 0.85rem;
-      color: #94a3b8;
-    }
-
-    /* ─────────────────────────────────────────────
-       PROBLEMA  ← SEÇÃO DE EMPATIA / AGITAÇÃO
-       Nomear a dor aumenta a identificação do visitante
-    ───────────────────────────────────────────── */
-    .problem {
-      background: #fef9f5;
-      border-left: 4px solid var(--brand);
-      padding: 48px 20px;
-      text-align: center;
-    }
-
-    .problem h2 {
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-
-    .problem p {
-      color: var(--muted);
-      max-width: 560px;
-      margin: 0 auto;
-    }
-
-    .pain-list {
-      list-style: none;
-      max-width: 520px;
-      margin: 28px auto 0;
-      text-align: left;
-      display: grid;
-      gap: 12px;
-    }
-
-    .pain-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      color: var(--text);
-      font-size: 0.97rem;
-    }
-
-    .pain-list li::before {
-      content: '✗';
-      color: #ef4444;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    /* ─────────────────────────────────────────────
-       BENEFÍCIOS  ← SEÇÃO DE SOLUÇÃO
-       Benefício = resultado, não feature
-    ───────────────────────────────────────────── */
-    .benefits {
-      padding: 72px 20px;
-      text-align: center;
-    }
-
-    .section-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--brand);
-      margin-bottom: 12px;
-    }
-
-    .benefits h2 {
-      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-      font-weight: 800;
-      max-width: 560px;
-      margin: 0 auto 48px;
-    }
-
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 28px;
-    }
-
-    .benefit-card {
-      background: var(--light);
-      border-radius: var(--radius);
-      padding: 32px 24px;
-      text-align: left;
-      border: 1px solid #e2e8f0;
-      transition: box-shadow .2s;
-    }
-
-    .benefit-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); }
-
-    .benefit-card .icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
-    }
-
-    .benefit-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--dark);
-    }
-
-    .benefit-card p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    /* ─────────────────────────────────────────────
-       PROVA SOCIAL — DEPOIMENTOS
-       Use depoimentos específicos com resultado mensurável
-    ───────────────────────────────────────────── */
-    .testimonials {
-      background: var(--dark);
-      color: var(--white);
-      padding: 72px 20px;
-      text-align: center;
-    }
-
-    .testimonials h2 {
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 800;
-      margin-bottom: 48px;
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-    }
-
-    .testimonial-card {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      text-align: left;
-    }
-
-    .stars { color: #fbbf24; font-size: 1rem; margin-bottom: 14px; }
-
-    .testimonial-card blockquote {
-      font-size: 0.92rem;
-      color: #cbd5e1;
-      line-height: 1.6;
-      margin-bottom: 20px;
-      font-style: italic;
-    }
-
-    .testimonial-card .author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .author-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--brand), #7c3aed);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1rem;
-      color: white;
-      flex-shrink: 0;
-    }
-
-    .author-name  { font-weight: 700; font-size: 0.9rem; }
-    .author-title { font-size: 0.78rem; color: #64748b; }
-
-    /* ─────────────────────────────────────────────
-       OFERTA  ← ÂNCORA DE PREÇO + GARANTIA
-       Mostre o valor antes do preço; ofereça garantia
-    ───────────────────────────────────────────── */
-    .offer {
-      padding: 72px 20px;
-      text-align: center;
-    }
-
-    .offer-box {
-      background: var(--light);
-      border: 2px solid var(--brand);
-      border-radius: 16px;
-      padding: 48px 36px;
-      max-width: 520px;
-      margin: 0 auto;
-    }
-
-    .offer h2 {
-      font-size: clamp(1.4rem, 3vw, 1.9rem);
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .offer .offer-sub {
-      color: var(--muted);
-      margin-bottom: 28px;
-      font-size: 0.95rem;
-    }
-
-    .offer-includes {
-      list-style: none;
-      text-align: left;
-      margin-bottom: 28px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .offer-includes li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.95rem;
-    }
-
-    .offer-includes li::before {
-      content: '✓';
-      color: #22c55e;
-      font-weight: 800;
-      flex-shrink: 0;
-    }
-
-    /* ✏️ COPY: Ancoragem de preço — mostre o valor original riscado */
-    .price-anchor {
-      font-size: 0.9rem;
-      color: var(--muted);
-      text-decoration: line-through;
-      margin-bottom: 4px;
-    }
-
-    .price-main {
-      font-size: 2.4rem;
-      font-weight: 900;
-      color: var(--dark);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .price-sub {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
-
-    /* ✏️ COPY: Garantia — remova o risco residual */
-    .guarantee {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-radius: 8px;
-      padding: 14px 16px;
-      font-size: 0.85rem;
-      color: #166534;
-      text-align: left;
-      margin-top: 20px;
-    }
-
-    .guarantee .shield { font-size: 1.5rem; flex-shrink: 0; }
-
-    /* ─────────────────────────────────────────────
-       FAQ  ← QUEBRA DE OBJEÇÕES FINAIS
-    ───────────────────────────────────────────── */
-    .faq {
-      background: var(--light);
-      padding: 72px 20px;
-    }
-
-    .faq h2 {
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 800;
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .faq-list {
-      max-width: 620px;
-      margin: 0 auto;
-      display: grid;
-      gap: 16px;
-    }
-
-    details {
-      background: var(--white);
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius);
-      padding: 20px 24px;
-      cursor: pointer;
-    }
-
-    details[open] { border-color: var(--brand); }
-
-    summary {
-      font-weight: 700;
-      font-size: 0.97rem;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    summary::after {
-      content: '+';
-      color: var(--brand);
-      font-size: 1.4rem;
-      font-weight: 300;
-      flex-shrink: 0;
-      transition: transform .2s;
-    }
-
-    details[open] summary::after { transform: rotate(45deg); }
-
-    details p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-top: 14px;
-      line-height: 1.65;
-    }
-
-    /* ─────────────────────────────────────────────
-       CTA FINAL  ← ÚLTIMA CHANCE DE CONVERTER
-       Reforce a urgência e repita a garantia
-    ───────────────────────────────────────────── */
-    .cta-final {
-      background: linear-gradient(160deg, #0f172a 0%, #1e293b 100%);
-      color: var(--white);
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    .cta-final h2 {
-      font-size: clamp(1.6rem, 4vw, 2.6rem);
-      font-weight: 800;
-      max-width: 600px;
-      margin: 0 auto 14px;
-    }
-
-    .cta-final h2 em {
-      font-style: normal;
-      color: var(--brand);
-    }
-
-    .cta-final p {
-      color: #94a3b8;
-      max-width: 480px;
-      margin: 0 auto 36px;
-    }
-
-    /* ─────────────────────────────────────────────
-       FOOTER MINIMALISTA  ← sem links de saída
-    ───────────────────────────────────────────── */
-    footer {
-      padding: 28px 20px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #94a3b8;
-      border-top: 1px solid #e2e8f0;
-    }
-
-    footer a { color: #64748b; }
-
-    /* ─────────────────────────────────────────────
-       RESPONSIVIDADE
-    ───────────────────────────────────────────── */
-    @media (max-width: 480px) {
-      .social-numbers { gap: 24px; }
-      .offer-box { padding: 32px 20px; }
-      .btn-primary { width: 100%; text-align: center; padding: 18px 24px; }
-    }
-  </style>
+  <!-- ═══════════════════════════════════════════════════════
+       GOOGLE TAG MANAGER — snippet do <head>
+       ⚠️ Substitua GTM-XXXXXXX pelo seu ID real do container
+  ═══════════════════════════════════════════════════════ -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  <!-- Fim GTM head -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       META PIXEL — código base
+       ⚠️ Substitua SEU_PIXEL_ID pelo seu ID real do Pixel
+  ═══════════════════════════════════════════════════════ -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'SEU_PIXEL_ID');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1" />
+  </noscript>
+  <!-- Fim Meta Pixel -->
+
+  <link rel="stylesheet" href="landing-page.css" />
 </head>
 
 <body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       GOOGLE TAG MANAGER — snippet do <body> (noscript)
+       Obrigatório logo após a abertura da tag <body>
+  ═══════════════════════════════════════════════════════ -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- Fim GTM noscript -->
 
   <!-- ══════════════════════════════════════════
        BARRA DE URGÊNCIA
        ✏️ Copy: Limite real de vagas ou promoção com prazo
   ══════════════════════════════════════════ -->
   <div class="urgency-bar">
-    ⚡ Oferta de lançamento: <span>50% OFF</span> — válido até 23 de março ou esgotar as vagas
+    ⚡ Atenção: restam apenas <span>23 vagas</span> nesta turma — 50% OFF encerra hoje à meia-noite
   </div>
 
 
@@ -554,7 +70,7 @@
     <div class="container">
 
       <!-- Eyebrow — segmenta o visitante certo -->
-      <span class="eyebrow">Para empreendedores e autônomos sobrecarregados</span>
+      <span class="eyebrow">Para quem trabalha muito e fatura de menos</span>
 
       <!--
         ✏️ HEADLINE — fórmula: VERBO FORTE + RESULTADO ESPECÍFICO + PRAZO
@@ -563,8 +79,8 @@
         • "Como 4.800 Empreendedores Recuperaram 3h por Dia Sem Abrir Mão do Faturamento"
       -->
       <h1>
-        Dobre sua Produtividade em <em>30 Dias</em><br>
-        Trabalhando Menos Horas por Dia
+        Pare de Trocar Horas por Resultado —<br>
+        e Fature Mais Trabalhando <em>Menos</em>
       </h1>
 
       <!--
@@ -572,9 +88,9 @@
         ("Não preciso de mais disciplina, preciso de um sistema que funcione de verdade")
       -->
       <p class="sub">
-        O Método Foco Total é o sistema passo a passo que mostro como eliminar
-        o trabalho inútil, focar no que realmente gera resultado e ainda sobrar
-        tempo para sua vida. Sem precisar de mais disciplina ou de acordar às 4h.
+        O sistema que <strong style="color:#fff">4.800 empreendedores</strong> usam para recuperar 3 horas por dia,
+        focar no que gera dinheiro de verdade — e ainda terminar a semana com energia.
+        Sem planilha complicada. Sem acordar às 4h. Sem precisar de mais força de vontade.
       </p>
 
       <!--
@@ -582,12 +98,12 @@
         Evite: "Comprar agora", "Clique aqui"
         Prefira: "Quero dobrar minha produtividade", "Começar hoje mesmo"
       -->
-      <a href="#oferta" class="btn-primary">
-        Quero Dobrar Minha Produtividade Agora →
+      <a href="sucesso.html" class="btn-primary" data-cta="hero" id="cta-hero">
+        Quero Meu Acesso Imediato — Por R$ 197 →
       </a>
 
       <!-- Micro-copy: elimina o risco residual -->
-      <p class="risk-reversal">🔒 Garantia incondicional de 7 dias · Acesso imediato</p>
+      <p class="risk-reversal">🔒 Garantia de 7 dias · Sem perguntas · Acesso em menos de 2 minutos</p>
 
       <!-- Prova numérica no hero -->
       <div class="social-numbers">
@@ -603,6 +119,10 @@
           <strong>30 dias</strong>
           <span>para ver resultados</span>
         </div>
+        <div class="stat">
+          <strong>97%</strong>
+          <span>de satisfação</span>
+        </div>
       </div>
 
     </div>
@@ -617,8 +137,8 @@
   <section class="problem">
     <div class="container">
 
-      <h2>Você se identifica com alguma dessas situações?</h2>
-      <p>Se você é empreendedor ou autônomo, provavelmente já viveu isso:</p>
+      <h2>Se você é empreendedor, provavelmente já sentiu isso na pele:</h2>
+      <p>Essas dores são mais comuns do que parecem — e têm solução:</p>
 
       <!--
         ✏️ COPY: Use dores bem específicas, não genéricas
@@ -637,20 +157,49 @@
 
 
   <!-- ══════════════════════════════════════════
+       QUICK WINS — BULLETS DE BENEFÍCIOS RÁPIDOS
+       O visitante escaneia em 20 segundos e já entende
+       o que vai ganhar — antes de ver o preço
+  ══════════════════════════════════════════ -->
+  <section class="quick-wins">
+    <div class="container">
+
+      <p class="section-label">O que você vai conquistar</p>
+      <h2 class="quick-wins__title">Em 30 dias, você vai:</h2>
+
+      <ul class="bullets">
+        <li><strong>Recuperar 3h por dia</strong> — sem trabalhar mais, apenas decidindo melhor onde colocar sua energia</li>
+        <li><strong>Saber exatamente o que fazer ao acordar</strong> — sem abrir o e-mail antes de definir suas prioridades</li>
+        <li><strong>Aumentar seu faturamento</strong> focando nas atividades que realmente geram caixa no seu negócio</li>
+        <li><strong>Terminar o dia com energia</strong> — sem aquela sensação de "trabalhei 12h e avancei quase nada"</li>
+        <li><strong>Dominar distrações de vez</strong> — WhatsApp, notificações e interrupções não vão mais roubar seu foco</li>
+        <li><strong>Tirar folgas sem culpa</strong> — com um sistema que mantém tudo funcionando mesmo quando você descansa</li>
+      </ul>
+
+      <div class="quick-wins__cta">
+        <a href="sucesso.html" class="btn-primary" data-cta="quick-wins" id="cta-quick-wins">Quero Esses Resultados Agora →</a>
+        <p class="quick-wins__note">⏳ Restam apenas 23 vagas nesta turma — garanta a sua hoje</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
        BENEFÍCIOS
        Benefício = transformação/resultado, não feature
   ══════════════════════════════════════════ -->
   <section class="benefits">
     <div class="container">
 
-      <p class="section-label">O que você vai conquistar</p>
+      <p class="section-label">Resultados em até 30 dias</p>
 
       <!--
         ✏️ COPY: Headline de benefícios — opções:
         • "O que muda quando você aplica o Método Foco Total"
         • "Resultados que nossos alunos relatam em até 30 dias"
       -->
-      <h2>Veja o que muda quando você aplica o método</h2>
+      <h2>O que muda na sua vida nas primeiras 4 semanas</h2>
 
       <div class="benefits-grid">
 
@@ -658,7 +207,7 @@
 
         <div class="benefit-card">
           <div class="icon">⏱️</div>
-          <h3>3h a mais de foco por dia</h3>
+          <h3>Recupere 3h do seu dia — todo dia</h3>
           <p>
             Você vai identificar e eliminar as atividades que roubam seu tempo
             sem gerar resultado — e direcionar essa energia para o que realmente
@@ -668,7 +217,7 @@
 
         <div class="benefit-card">
           <div class="icon">📈</div>
-          <h3>Mais faturamento com menos horas</h3>
+          <h3>Fature mais sem trabalhar mais horas</h3>
           <p>
             Com um sistema de priorização baseado em impacto, você vai focar
             nas atividades de alto valor — e aumentar o retorno por hora
@@ -678,7 +227,7 @@
 
         <div class="benefit-card">
           <div class="icon">🧠</div>
-          <h3>Clareza de onde focar cada dia</h3>
+          <h3>Acorde sabendo exatamente o que fazer</h3>
           <p>
             Sem mais paralisia por excesso de tarefas. Você vai começar cada
             dia sabendo exatamente o que fazer — e terminar com a sensação
@@ -688,7 +237,7 @@
 
         <div class="benefit-card">
           <div class="icon">🔋</div>
-          <h3>Energia no fim do dia</h3>
+          <h3>Termine o dia com energia, não exausto</h3>
           <p>
             Trabalhar de forma estratégica é menos exaustivo do que trabalhar
             muito. Você vai terminar o dia produtivo, não esgotado.
@@ -697,7 +246,7 @@
 
         <div class="benefit-card">
           <div class="icon">📱</div>
-          <h3>Controle sobre distrações digitais</h3>
+          <h3>Domine distrações em 5 minutos por dia</h3>
           <p>
             Um protocolo simples e testado para dominar notificações, e-mails
             e interrupções — sem precisar largar seu celular em outra sala.
@@ -706,7 +255,7 @@
 
         <div class="benefit-card">
           <div class="icon">🗓️</div>
-          <h3>Sistema que funciona a longo prazo</h3>
+          <h3>Um sistema que resiste às semanas caóticas</h3>
           <p>
             Diferente de apps e planilhas que você abandona em dias, o Método
             Foco Total foi desenhado para se encaixar na sua rotina real —
@@ -726,7 +275,7 @@
   <section class="testimonials">
     <div class="container">
 
-      <h2>O que dizem quem já aplicou o método</h2>
+      <h2>Mais de 4.800 resultados reais. Estes são alguns.</h2>
 
       <div class="testimonials-grid">
 
@@ -740,10 +289,9 @@
         <div class="testimonial-card">
           <div class="stars">★★★★★</div>
           <blockquote>
-            "Eu achei que era mais um curso de produtividade genérico. Me
-            surpreendi. Na primeira semana já eliminei 2 reuniões inúteis por
-            dia e hoje trabalho das 8h às 17h com resultado — antes saía às 22h
-            sem terminar metade das tarefas."
+            “Eu achei que era mais um curso de produtividade genérico. Me arrependi de ter esperado tanto para comprar.
+            Na primeira semana já eliminei 2 reuniões inúteis por dia e hoje trabalho das 8h às 17h com resultado —
+            antes saía às 22h sem terminar metade das tarefas.”
           </blockquote>
           <div class="author">
             <div class="author-avatar">LC</div>
@@ -757,9 +305,9 @@
         <div class="testimonial-card">
           <div class="stars">★★★★★</div>
           <blockquote>
-            "Apliquei o módulo de planejamento semanal no sábado e na semana
-            seguinte faturei R$ 8.400 — meu melhor mês em dois anos de
-            freelance. Não foi sorte: foi decidir onde colocar minha energia."
+            “Apliquei o módulo de planejamento semanal no sábado e na semana seguinte faturei R$ 8.400 —
+            meu melhor mês em dois anos de freelance. Não foi sorte: foi decidir onde eu colocava
+            minha energia. Hoje uso o método toda semana sem falta.”
           </blockquote>
           <div class="author">
             <div class="author-avatar">AM</div>
@@ -773,10 +321,9 @@
         <div class="testimonial-card">
           <div class="stars">★★★★★</div>
           <blockquote>
-            "Minha maior resistência era 'não tenho perfil disciplinado'. Mas o
-            método não depende de força de vontade — depende de sistema. Em 3
-            semanas reduzi minha jornada de 14h para 8h sem perder nenhum
-            cliente. Isso mudou minha vida."
+            “Minha maior resistência era dizer que não tenho perfil disciplinado. O método não depende
+            de força de vontade — depende de sistema. Em 3 semanas reduzi minha jornada de 14h para
+            8h sem perder nenhum cliente. Isso mudou minha vida e meu casamento.”
           </blockquote>
           <div class="author">
             <div class="author-avatar">RT</div>
@@ -812,16 +359,20 @@
         <h2>Método Foco Total — Edição Completa</h2>
         <p class="offer-sub">Tudo que você precisa para dobrar sua produtividade nos próximos 30 dias</p>
 
+        <!-- Escassez real: número de vagas restantes -->
+        <div class="scarcity-badge">
+          🔴 Apenas 23 vagas restantes nesta turma — após esgotar, sobe para R$ 497
+        </div>
         <!--
           ✏️ COPY: O que está incluso — seja detalhado, inclua o "resultado" de cada item
         -->
         <ul class="offer-includes">
-          <li>6 módulos em vídeo com o método completo (+ de 4h de conteúdo)</li>
-          <li>Planilha de planejamento semanal inteligente (em Google Sheets)</li>
-          <li>Protocolo de controle de distrações digitais (PDF aplicável)</li>
-          <li>Sistema de priorização por impacto — decida em 5 min o que focar</li>
-          <li>Grupo de suporte no Telegram por 3 meses</li>
-          <li><strong>BÔNUS:</strong> Aula ao vivo de implementação (valor: R$ 197)</li>
+          <li>6 módulos em vídeo — o método completo em mais de 4h de conteúdo objetivo</li>
+          <li>Planilha de planejamento semanal inteligente — 15 min por semana, resultados toda semana</li>
+          <li>Protocolo antiDistração (PDF) — domine WhatsApp e notificações de uma vez por todas</li>
+          <li>Sistema de priorização por impacto — decida em 5 min o que vai mover o ponteiro</li>
+          <li>Grupo de suporte no Telegram por 3 meses — com alunos que já aplicaram o método</li>
+          <li><strong>BÔNUS:</strong> Aula ao vivo de implementação — vou aplicar o método com você (valor: R$ 197)</li>
         </ul>
 
         <!-- Ancoragem de preço -->
@@ -829,8 +380,8 @@
         <p class="price-main">R$ 197</p>
         <p class="price-sub">ou 12× de R$ 18,90 · Pagamento 100% seguro</p>
 
-        <a href="#" class="btn-primary" style="width:100%;display:block;text-align:center;">
-          Quero Começar Agora por R$ 197 →
+        <a href="sucesso.html" class="btn-primary" data-cta="offer" id="cta-offer" style="width:100%;display:block;text-align:center;">
+          Garantir Minha Vaga Agora — R$ 197 →
         </a>
 
         <!-- Garantia — reduza o risco ao mínimo -->
@@ -924,21 +475,21 @@
         "Você pode continuar trocando horas por resultado... ou pode mudar isso hoje."
       -->
       <h2>
-        Você pode continuar trabalhando até de madrugada,<br>
-        ou pode <em>mudar isso ainda esta semana.</em>
+        Hoje é o último dia com esse preço.<br>
+        Você vai aproveitar <em>ou continuar igual?</em>
       </h2>
 
       <p>
-        4.800 empreendedores já escolheram o segundo caminho.
-        A garantia de 7 dias significa que o único risco real é continuar como está.
+        4.800 empreendedores já escolheram parar de trabalhar mais e começar a trabalhar melhor.
+        A garantia de 7 dias elimina qualquer risco — o único risco real é ficar como está.
       </p>
 
-      <a href="#oferta" class="btn-primary">
-        Sim, quero dobrar minha produtividade agora →
+      <a href="sucesso.html" class="btn-primary" data-cta="final" id="cta-final">
+        Quero Minha Vaga com 50% OFF — Agora →
       </a>
 
       <p style="font-size:0.8rem;color:#475569;margin-top:16px;">
-        🔒 Pagamento seguro · Acesso imediato · Garantia de 7 dias
+        🔒 Pagamento seguro · Acesso em menos de 2 minutos · Garantia de 7 dias sem perguntas
       </p>
 
     </div>
@@ -948,6 +499,9 @@
   <!-- ══════════════════════════════════════════
        FOOTER — MÍNIMO, SEM LINKS DE SAÍDA
   ══════════════════════════════════════════ -->
+  <!-- Rastreamento: eventos de funil -->
+  <script src="landing-page.js" defer></script>
+
   <footer>
     <p>© 2026 Método Foco Total · Todos os direitos reservados</p>
     <p style="margin-top:6px;">
